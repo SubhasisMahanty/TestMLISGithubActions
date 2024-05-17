@@ -3,7 +3,9 @@
 	<property name="provar.home" value="${env.PROVAR_HOME}" />
 	<property name="testproject.home" value="${env.TEST_PROJECT_HOME}" />
 	<property name="testproject.results" value="${testproject.home}/ANT/Results" />
-
+	<property name="environmentvar" value="${env.ENVIRONMENT}" />
+	<property name="secrets.password" value="${env.ProvarSecretsPassword}" />
+	<property name="testenvironment.secretspassword" value="${env.ProvarSecretsPassword_EnvName}" />
 	<taskdef name="Provar-Compile" classname="com.provar.testrunner.ant.CompileTask" classpath="${provar.home}/ant/ant-provar.jar" />
 	<taskdef name="Run-Test-Case" classname="com.provar.testrunner.ant.RunnerTask" classpath="${provar.home}/ant/ant-provar.jar;${provar.home}/ant/ant-provar-bundled.jar;${provar.home}/ant/ant-provar-sf.jar" />
 	<taskdef name="Test-Cycle-Report" classname="com.provar.testrunner.ant.TestCycleReportTask" classpath="${provar.home}/ant/ant-provar.jar;${provar.home}/ant/ant-provar-bundled.jar;${provar.home}/ant/ant-provar-sf.jar" />
