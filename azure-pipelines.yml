@@ -1,0 +1,154 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+
+  # trigger:
+  # - master
+  # # - Shankar
+  trigger:
+    batch: true
+    branches:
+      include:
+      - master
+
+  jobs:
+    - job: run_build_and_tests
+      timeoutInMinutes: 1440
+      pool:
+        # vmImage: ubuntu-latest
+        vmImage: ubuntu-latest
+
+      steps:
+      - script: echo Hello, world!
+        displayName: 'Run a one-line script'
+
+      - script: |
+          echo Add other tasks to build, test, and deploy your project.
+          echo See https://aka.ms/yaml
+        displayName: 'Run a multi-line script'
+
+      - task: JavaToolInstaller@0
+        inputs:
+          # versionSpec: '8'
+          versionSpec: '11'
+          jdkArchitectureOption: 'x64'
+          jdkSourceOption: 'PreInstalled'
+
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your PowerShell commands here.
+            
+            Write-Host "Hello World"
+            $webclient = New-Object System.Net.WebClient
+            $url = "https://download.provartesting.com/2.13.1/Provar_ANT_2.13.1.zip"
+            # $url = "https://download.provartesting.com/2.10.2/Provar_ANT_2.10.2.07.zip"
+            # $url = "https://download.provartesting.com/2.10.1/Provar_ANT_2.10.1.05.zip"
+            $file = "Provar_ANT_2.13.1.zip"
+            # $file = "Provar_ANT_2.10.2.07.zip"
+            # $file = "Provar_ANT_2.10.1.05.zip"
+            
+            
+            
+            
+            $webclient.DownloadFile($url,$file)
+            Expand-Archive -Force -Path Provar_ANT_2.13.1.zip -DestinationPath $env:SYSTEM_DEFAULTWORKINGDIRECTORY/ProvarHome
+            # Expand-Archive -Force -Path Provar_ANT_2.10.2.07.zip -DestinationPath $env:SYSTEM_DEFAULTWORKINGDIRECTORY/ProvarHome
+            # Expand-Archive -Force -Path Provar_ANT_2.10.1.05.zip -DestinationPath $env:SYSTEM_DEFAULTWORKINGDIRECTORY/ProvarHome
+            
+            
+            
+            ls -lah      
+            echo "After"
+            pwd
+            ls -l
+            Get-ChildItem -Path ProvarHome/ant
+            Get-ChildItem -Path ProvarHome/lib
+            Get-ChildItem -Path ProvarHome/provardx
+            
+            echo "Move smtp"
+            echo "$(Pipeline.Workspace)"
+            echo "$(PROVAR_HOME)"
+            # del $(PROVAR_HOME)/lib/com.sun.jna.platform_5.8.0.jar
+            # del $(PROVAR_HOME)/lib/com.sun.jna_5.8.0.jar
+            # cp -r $(PROVAR_HOME)/Asset/.smtp $env:SYSTEM_DEFAULTWORKINGDIRECTORY/ProvarHome
+            # cp -r $(Pipeline.Workspace)/s/Asset/.smptp/ $(PROVAR_HOME)/
+            # ls -l $env:SYSTEM_DEFAULTWORKINGDIRECTORY/ProvarHome
+            # ls -l $(PROVAR_HOME)/Asset/
+
+            
+
+      - script: |
+          echo "##vso[task.setvariable variable=JAVA_HOME]$(JAVA_HOME_11_X64)"
+          echo "##vso[task.setvariable variable=PATH]$(JAVA_HOME_11_X64)/bin:$(PATH)"
+          # echo "##vso[task.setvariable variable=JAVA_HOME]$(JAVA_HOME_8_X64)"
+          # echo "##vso[task.setvariable variable=PATH]$(JAVA_HOME_8_X64)/bin:$(PATH)"
+          echo "#######"
+          java -version
+          ant -version 
+          pwd
+          ls -l
+          which ant
+          echo "END"
+          
+        displayName: "Check java and ant version"    
+      # - task: Ant@1
+      #   inputs:
+      #     buildFile: 'Asset-SITP/ANT/executeCICDbuild.xml'
+      #     options: '-Dprovar.home=$(PROVAR_HOME)'
+      #     targets: '$(PROVAR_HOME)../ANT/Results'
+      #     publishJUnitResults: true
+      #     testResultsFiles: '**/TEST-*.xml'
+      #     testRunTitle: 'Execute Testcases through ANT'
+      #     javaHomeOption: 'JDKVersion'
+      - task: Bash@3
+        inputs:
+          targetType: 'inline'
+          # script: 'xvfb-run ant -Dprovar.home=$(PROVAR_HOME) -f Asset-SITP/ANT/executeCICDbuild.xml'
+          script: 'xvfb-run ant -Dprovar.home=$(PROVAR_HOME) -f MLIS/ANT/$(XML_filePath)'
+          failOnStderr: false
+          
+      - task: PublishTestResults@2
+        displayName: 'Publish Test Results from First Run'
+        condition: always()
+        inputs:
+          testResultsFormat: 'JUnit'
+          testResultsFiles: 'MLIS/ANT/Results/JUnit.xml'
+          failTaskOnFailedTests: false
+
+      - task: PublishTestResults@2
+        displayName: 'Publish Test Results from Rerun Run'
+        condition: always()
+        inputs:
+          testResultsFormat: 'JUnit'
+          testResultsFiles: 'MLIS/ANT/Results(1)/JUnit.xml'
+          # testResultsFiles: 'MLIS/ANT/**/JUnit.xml'
+          failTaskOnFailedTests: false    
+
+      - task: PublishPipelineArtifact@1
+        condition: always()
+        inputs:
+          # targetPath: '$(Pipeline.Workspace)/Asset-SITP'
+          targetPath: '$(Pipeline.Workspace)/s/MLIS/ANT'
+          
+          artifact: 'TestResults'
+          publishLocation: 'pipeline'
+        
+      # - task: PublishTestResults@2
+      #   condition: always()
+      #   inputs:
+      #     testResultsFormat: 'JUnit'
+      #     testResultsFiles: '**/TEST-*.xml'
+
+      # Uncomment below code if you required to download whole code as of now commented
+      # - task: PublishBuildArtifacts@1
+      #   condition: always()
+      #   inputs:
+      #     # PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      #     PathtoPublish: '$(Build.Repository.LocalPath)/MLIS'
+      #     ArtifactName: 'Download_Artifacts'
+      #     publishLocation: 'Container'
+

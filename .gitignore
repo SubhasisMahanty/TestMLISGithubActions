@@ -1,0 +1,13 @@
+/.metadata/
+*.pdf
+*.class
+.metadata/
+.chromeProfiles/
+MLIS/bin/pageobjects/*.class
+MLIS/ANT/Results*
+MLIS/.gitignore
+MLIS/.settings/*
+MLIS/ANT/R*
+MLIS/ANT/build.xml
+.provarCaches
+.testcycles
