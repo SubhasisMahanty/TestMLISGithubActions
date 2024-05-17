@@ -1,0 +1,32 @@
+{
+  "componentId" : "3ccec879-cb6f-4cb9-834e-2e2da48a0d9c",
+  "name" : "/com/force/dualgroup/combobox",
+  "tagName" : "c-combobox",
+  "parameters" : [ ],
+  "type" : "Block",
+  "pageStructureElement" : false,
+  "fieldDetailsElement" : false,
+  "elements" : [ {
+    "componentId" : "1b033ff1-d7b4-47f1-91db-f664a97f1d61",
+    "type" : "component::3e6f6e1d-f605-45a1-809e-7d083d920237",
+    "label" : "Cancellation reason",
+    "properties" : [ ],
+    "parameters" : [ {
+      "name" : "class",
+      "value" : "slds-input slds-listbox__option-text_entity",
+      "comparisonType" : "contains",
+      "default" : false
+    }, {
+      "name" : "type",
+      "value" : "text",
+      "comparisonType" : "equals",
+      "default" : true
+    }, {
+      "name" : "value",
+      "value" : "{param.value}",
+      "comparisonType" : "equals",
+      "default" : false
+    } ],
+    "elements" : [ ]
+  } ]
+}

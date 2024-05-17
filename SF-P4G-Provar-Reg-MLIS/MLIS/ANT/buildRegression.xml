@@ -1,0 +1,157 @@
+<project default="runtests">
+	<property environment="env"/>
+	<property name="provar.home" value="${env.PROVAR_HOME}"/>
+	<property name="testproject.home" value="${env.TEST_PROJECT_HOME}"/>
+	<property name="testproject.results" value="${testproject.home}/ANT/Results"/>
+	<!--<property name="provar.home" value="C:/Program Files/Provar2.9.0/"/>
+		<property name="testproject.home" value=".."/>
+		<property name="testproject.results" value="../ANT/Results"/>-->
+	<property name="secrets.password" value="${env.ProvarSecretsPassword}"/>
+	<property name="testenvironment.secretspassword" value="${env.ProvarSecretsPassword_EnvName}"/>
+	<property name="environmentvar" value="${env.ENVIRONMENT}"/>
+	<property name="testcycle.path" value="${testproject.home}/ANT/Cycle"/>
+	
+	<taskdef name="Provar-Compile" classname="com.provar.testrunner.ant.CompileTask" classpath="${provar.home}/ant/ant-provar.jar"/>
+	<taskdef name="Run-Test-Case" classname="com.provar.testrunner.ant.RunnerTask" classpath="${provar.home}/ant/ant-provar.jar;${provar.home}/ant/ant-provar-bundled.jar;${provar.home}/ant/ant-provar-sf.jar"/>
+	<taskdef name="Test-Cycle-Report" classname="com.provar.testrunner.ant.TestCycleReportTask" classpath="${provar.home}/ant/ant-provar.jar;${provar.home}/ant/ant-provar-bundled.jar;${provar.home}/ant/ant-provar-sf.jar"/>
+	
+	<target name="runtests">
+	
+		<Provar-Compile provarHome="${provar.home}" projectPath="${testproject.home}"/>
+	
+		<Run-Test-Case provarHome="${provar.home}" 
+				projectPath="${testproject.home}" 
+				smtpPath="${testproject.home}/.smtp/"
+			licensePath="${testproject.home}/.licenses"
+				resultsPath="${testproject.results}" 
+				resultsPathDisposition="Increment" 
+				testEnvironment="${environmentvar}" 
+				webBrowser="Chrome" 
+				webBrowserConfiguration="Full Screen"
+				webBrowserProviderName="Desktop"
+				webBrowserDeviceName="Full Screen" 
+				excludeCallableTestCases="false" 
+				salesforceMetadataCache="Reuse" 
+				projectCachePath="../../.provarCaches"
+				testOutputlevel="BASIC" 
+				pluginOutputlevel="WARNING"
+				stopTestRunOnError="false"
+				secretsPassword="${secrets.password}"
+				testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+				testCyclePath="${testcycle.path}"
+			   	testCycleRunType="ALL"
+				dontFailBuild="true"
+				invokeTestRunMonitor="false"
+				>
+			
+			
+			
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86052_DT-DFMLIS-E2E_Residential_Quick_Quote_(House_Buyer_or_Seller)_EW.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86053_DT-DFMLIS-E2E_Create_Residential_Quote_(One_product)_EW.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86054_DT-DFMLIS-E2E_Create_Residential_Quote_(More_than_One_Risk)_SC.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86055_DT-DFMLIS-E2E_Create Commercial Quote (One product)_EW.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86056_DT-DFMLIS-E2E_Create Commercial Quote (More than One product)_NI.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86057_DT-DFMLIS-E2E_Default_Underwriter_Override_premium_Percentage_Residential_EW.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86058_DT-DFMLIS-E2E_Trigger Referral_EW_Broker.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86059_DT-DFMLIS-E2E_Verify user able to create a Multiple product Commercial policy from EW Region.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86060_DT-DFMLIS-E2E_Verify_user_able_to_create_a_Single_product_commercial_policy_from_SC_Region_Br_UW.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86061_DT-DFMLIS-E2E_Verify_user_able_to_create_a_Single_product_Residential_policy_from_NI_Region.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90919_DT-DFMLIS-E2E_Trigger_Referral_Broker_Select_the_products_more_than_4_SC_Residential.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90920_DT-DFMLIS-E2E_Trigger_Referral__Broker_Give_LOI_More_than_25000000_for_commercial_NI.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90922_DT-DFMLIS-E2E_VerifyDefaultUW_ableTo_Add_Terms_createA_Multiple_3product_commercial_policy_from_EW_Region_Broker_and_Normal_UW.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90923_DT-DFMLIS-E2E_Normal_Underwriter_Function_Your_Quote_Override_premium_Percentage_Residential_EW.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90924_DT-DFMLIS-E2E_NormalUWYourQuote_OverrideTerms_ExcessAndLimitation_Commercial_SC.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90933_DT-DFMLIS-E2E_Residential_Quick_Quote_(House_Buyer_or_Seller)_SC.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90934_DT-DFMLIS-E2E_Residential_Quick_Quote_(House_Buyer_or_Seller)_NI.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91014_DT-DFMLIS-E2E_Verify_Operation_L2_User_able_to_validate_the_Full_Cancellation_policy_Created_by_Broker_SC_Residential.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91163_DT-DFMLIS-E2E_Verify_User_able_to_validate_the_Full_Cancellation_policy_EW_Commercial.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91164_DT-DFMLIS-E2E_DefaultUWUser_abletovalidate_theBespoke_SOF_Broker_Submission_QuotedEWCommercial.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91165_DT-DFMLIS-E2E_VerifyDefaultUWUser_ableto_validate_the_bespoke_Uninsured_matters_SC_Residential.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91166_DT-DFMLIS-E2E_VerifyDefaultUWUser_ableto_validate_the_bespoke_Terms_Conditions_NI_Residential.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91167_DT-DFMLIS-E2E_DefaultUWUser_validate_theRemoval_ofQuote_and_Restored_of_Quote_NIResidential.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91401_DT-DFMLIS-E2E_VerifyDefaultUW_User_ableto_validate_the_Impersonation_Journey_NI_Residential.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91403_DT-DFMLIS-E2E_Verify_Default_UW_User_able_to_validate_the_Sfiles_EW_Residential.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91405_DT-DFMLIS-E2E_MLISEnhancedUW_does_Quote_Journey_from_startTofinish_EW_Residential.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91406_DT-DFMLIS-E2E_MLISEnhancedUW_does_Quote_Journey_from_startTofinish_NI_Commercial.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91407_DT-DFMLIS-E2E_MLISDefaultUW_does_Quote_Journey_from_startTofinish_SC_Residential.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91408_DT-DFMLIS-E2E_MLISDefaultUW_does_Quote_Journey_from_startTofinish_EW_Commercial.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91426_DT-DFMLIS-E2E_Verify_Operation_L2_User_able_to_validate_the_Partial_Cancellation_policy_Created_by_Broker_NI_Residential.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91433_DT-DFMLIS-E2E_Verify_Operation_L2_User_able_to_validate_the_Partial_Cancellation_policy_Created_by_Broker_EW_Commercial.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="92694_DT-DFMLIS-E2E_Default_UW_Verify_user_able_to_validate_the_Document_details_EW_Residential_UW.testcase"/></fileset>
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="92695_DT-DFMLIS-E2E_Default_UW_Verify_user_able_to_validate_the_Document_details_SC_Commercial_UW.testcase"/></fileset>
+		</Run-Test-Case>
+		
+		
+		<Run-Test-Case provarHome="${provar.home}" 
+						projectPath="${testproject.home}" 
+						smtpPath="${testproject.home}/.smtp/"
+			licensePath="${testproject.home}/.licenses"
+						resultsPath="${testproject.results}" 
+						resultsPathDisposition="Increment" 
+						testEnvironment="${environmentvar}" 
+						webBrowser="Chrome" 
+						webBrowserConfiguration="Full Screen"
+						webBrowserProviderName="Desktop"
+						webBrowserDeviceName="Full Screen" 
+						excludeCallableTestCases="false" 
+						salesforceMetadataCache="Reuse" 
+						projectCachePath="../../.provarCaches"
+						testOutputlevel="BASIC" 
+						pluginOutputlevel="WARNING"
+						stopTestRunOnError="false"
+						secretsPassword="${secrets.password}"
+						testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+						testCyclePath="${testcycle.path}"
+					   	testCycleRunType="FAILURES_AND_SKIPPED"
+						dontFailBuild="true"
+						invokeTestRunMonitor="false"
+						>
+				
+			
+			<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86052_DT-DFMLIS-E2E_Residential_Quick_Quote_(House_Buyer_or_Seller)_EW.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86053_DT-DFMLIS-E2E_Create_Residential_Quote_(One_product)_EW.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86054_DT-DFMLIS-E2E_Create_Residential_Quote_(More_than_One_Risk)_SC.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86055_DT-DFMLIS-E2E_Create Commercial Quote (One product)_EW.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86056_DT-DFMLIS-E2E_Create Commercial Quote (More than One product)_NI.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86057_DT-DFMLIS-E2E_Default_Underwriter_Override_premium_Percentage_Residential_EW.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86058_DT-DFMLIS-E2E_Trigger Referral_EW_Broker.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86059_DT-DFMLIS-E2E_Verify user able to create a Multiple product Commercial policy from EW Region.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86060_DT-DFMLIS-E2E_Verify_user_able_to_create_a_Single_product_commercial_policy_from_SC_Region_Br_UW.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="86061_DT-DFMLIS-E2E_Verify_user_able_to_create_a_Single_product_Residential_policy_from_NI_Region.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90919_DT-DFMLIS-E2E_Trigger_Referral_Broker_Select_the_products_more_than_4_SC_Residential.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90920_DT-DFMLIS-E2E_Trigger_Referral__Broker_Give_LOI_More_than_25000000_for_commercial_NI.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90922_DT-DFMLIS-E2E_VerifyDefaultUW_ableTo_Add_Terms_createA_Multiple_3product_commercial_policy_from_EW_Region_Broker_and_Normal_UW.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90923_DT-DFMLIS-E2E_Normal_Underwriter_Function_Your_Quote_Override_premium_Percentage_Residential_EW.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90924_DT-DFMLIS-E2E_NormalUWYourQuote_OverrideTerms_ExcessAndLimitation_Commercial_SC.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90933_DT-DFMLIS-E2E_Residential_Quick_Quote_(House_Buyer_or_Seller)_SC.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="90934_DT-DFMLIS-E2E_Residential_Quick_Quote_(House_Buyer_or_Seller)_NI.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91014_DT-DFMLIS-E2E_Verify_Operation_L2_User_able_to_validate_the_Full_Cancellation_policy_Created_by_Broker_SC_Residential.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91163_DT-DFMLIS-E2E_Verify_User_able_to_validate_the_Full_Cancellation_policy_EW_Commercial.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91164_DT-DFMLIS-E2E_DefaultUWUser_abletovalidate_theBespoke_SOF_Broker_Submission_QuotedEWCommercial.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91165_DT-DFMLIS-E2E_VerifyDefaultUWUser_ableto_validate_the_bespoke_Uninsured_matters_SC_Residential.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91166_DT-DFMLIS-E2E_VerifyDefaultUWUser_ableto_validate_the_bespoke_Terms_Conditions_NI_Residential.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91167_DT-DFMLIS-E2E_DefaultUWUser_validate_theRemoval_ofQuote_and_Restored_of_Quote_NIResidential.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91401_DT-DFMLIS-E2E_VerifyDefaultUW_User_ableto_validate_the_Impersonation_Journey_NI_Residential.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91403_DT-DFMLIS-E2E_Verify_Default_UW_User_able_to_validate_the_Sfiles_EW_Residential.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91405_DT-DFMLIS-E2E_MLISEnhancedUW_does_Quote_Journey_from_startTofinish_EW_Residential.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91406_DT-DFMLIS-E2E_MLISEnhancedUW_does_Quote_Journey_from_startTofinish_NI_Commercial.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91407_DT-DFMLIS-E2E_MLISDefaultUW_does_Quote_Journey_from_startTofinish_SC_Residential.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91408_DT-DFMLIS-E2E_MLISDefaultUW_does_Quote_Journey_from_startTofinish_EW_Commercial.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91426_DT-DFMLIS-E2E_Verify_Operation_L2_User_able_to_validate_the_Partial_Cancellation_policy_Created_by_Broker_NI_Residential.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="91433_DT-DFMLIS-E2E_Verify_Operation_L2_User_able_to_validate_the_Partial_Cancellation_policy_Created_by_Broker_EW_Commercial.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="92694_DT-DFMLIS-E2E_Default_UW_Verify_user_able_to_validate_the_Document_details_EW_Residential_UW.testcase"/></fileset>
+						<fileset dir="../tests/86024_DT-DFMLIS-E2E"><include name="92695_DT-DFMLIS-E2E_Default_UW_Verify_user_able_to_validate_the_Document_details_SC_Commercial_UW.testcase"/></fileset>			
+				</Run-Test-Case>
+		<Test-Cycle-Report provarHome="${provar.home}"
+						projectPath="${testproject.home}" 
+			        	testCyclePath="${testcycle.path}"
+						smtpPath="${testproject.home}/.smtp/"
+						reportPath="${testcycle.path}/ReRunConsolidatedReport.pdf"
+						failBuildIfFailures="true"
+						invokeTestRunMonitor="true"
+						>
+					<emailProperties sendEmail="true" primaryRecipients="shankar.krishnarao@dualgroup.com,subhasis.mahanty@dualgroup.com" ccRecipients="" bccRecipients="" emailSubject="Provar test run report - MLIS-Regression" attachExecutionReport="true" attachZip="false"/>
+								<attachmentProperties includeAllFailuresInSummary="true" includeBdd="true" includeSkipped="false" includeTestCasePathHierarchy="true" includeTestCaseShowSummary="true" includeBasicLogs="true" includeDetailLogs="true" includeDiagnosticTrace="false" includeTestStepTime="true" includeNoScreenshot="false" includeScreenshotThumbnail="false" includeFullScreenShot="true"/>
+				</Test-Cycle-Report>
+	</target>
+</project>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase guid="3e1489b3-8ba9-47df-a942-4623305cf129" id="3">
+  <summary/>
+  <steps>
+    <caseCall guid="22d7b527-42fd-4f48-aa01-a73067b55a61" testCaseId="176813ab-b4a6-49cd-81cc-9bd60ed55778" testCasePath="tests/86024_DT-DFMLIS-E2E/91408_DT-DFMLIS-E2E_MLISDefaultUW_does_Quote_Journey_from_startTofinish_EW_Commercial.testcase" testItemId="5">
+      <arguments>
+        <argument id="TestCase_ID">
+          <value class="value" valueClass="string">91408</value>
+        </argument>
+        <argument id="LOI">
+          <value class="value" valueClass="string">550000</value>
+        </argument>
+        <argument id="binder">
+          <value class="value" valueClass="string">Aviva Insurance Limited (trading as Norwich Union)</value>
+        </argument>
+        <argument id="productName">
+          <value class="value" valueClass="string">Rent Charge</value>
+        </argument>
+        <argument id="address">
+          <value class="value" valueClass="string">Coral, 65-68 Leadenhall Street, London, EC3A 2AD</value>
+        </argument>
+        <argument id="PlanID">
+          <value class="value" valueClass="string">110951</value>
+        </argument>
+        <argument id="SuiteID">
+          <value class="value" valueClass="string">118691</value>
+        </argument>
+        <argument id="PointID">
+          <value class="value" valueClass="string">66640</value>
+        </argument>
+      </arguments>
+    </caseCall>
+  </steps>
+</testCase>

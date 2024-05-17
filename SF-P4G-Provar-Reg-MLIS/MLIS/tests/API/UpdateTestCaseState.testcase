@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase guid="0fa3faec-8b04-40eb-89c3-5c456b63bf08" id="72" registryId="d43c3e07-7f1d-43e1-b993-79e390b7e7ed" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.restservice.WebConnect" guid="388050f2-3c4f-4ba4-ba98-ee8aa4bc203d" name="WebConnect" testItemId="30" title="Web Connect: ADOConnect">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">ADO_Connection</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">ADOConnect</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="connectionId">
+          <value class="value" valueClass="id">5a1f1aa8-6ae0-4ee6-84b4-8f675cd62319</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" guid="92c2d7c2-fff3-4121-ba20-bf3f507f33c7" name="SetValues" testItemId="54" title="Set Values: Outcome">
+      <tags/>
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">Outcome</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="TCOutcome"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.restservice.RestRequest" guid="8a905c87-5eb3-493a-85f3-0dab5c4e1054" name="RestRequest" testItemId="58" title="Web Request (REST): ⇒RestResponse">
+      <tags/>
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">ADOConnect</value>
+        </argument>
+        <argument id="targetValue">
+          <value class="restTarget" uri="rest:untyped?method=PATCH&amp;bodyStyle=JSON"/>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">RestResponse</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="statusResultName">
+          <value class="value" valueClass="string">RestResponseStatus</value>
+        </argument>
+        <argument id="restResourceUrl">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">/DUALforce/_apis/test/Plans/</value>
+              <variable>
+                <path element="PlanID"/>
+              </variable>
+              <value valueClass="string">/suites/</value>
+              <variable>
+                <path element="SuiteID"/>
+              </variable>
+              <value valueClass="string">/points/</value>
+              <variable>
+                <path element="PointID"/>
+              </variable>
+              <value valueClass="string">?api-version=5.0</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="restRequestHeader">
+          <value class="value" valueClass="string">Authorization: Basic OnZsNzI1Z3lrYmE2NG5qNWVkMjJhZGxraWlpeHhveGJsMnVwYjJkbXBoM3Z0cWc2aHUzcnE=</value>
+        </argument>
+        <argument id="restBody">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">{\n\t"outcome":"</value>
+              <variable>
+                <path element="Outcome"/>
+              </variable>
+              <value valueClass="string">"\n}</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="restAttachments">
+          <value class="valueList" mutable="Mutable"/>
+        </argument>
+      </arguments>
+      <generatedParameters>
+        <apiParam group="request" internal="true" name="restResourceUrl" title="Resource URL">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+        <apiParam group="header" internal="true" name="restRequestHeader" passwordVariableAllowed="true" title="Request Header">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+        <apiParam group="body" name="restBody" title="Body">
+          <type>
+            <textType>
+              <constraints>
+                <valueConstraint name="mimeType">application/json</valueConstraint>
+              </constraints>
+            </textType>
+          </type>
+        </apiParam>
+        <compoundApiParam group="attachments" list="true" name="restAttachments" title="Attachment">
+          <childParams>
+            <apiParam name="name" title="Attachment Name"/>
+            <apiParam name="fileName" title="File Name"/>
+            <apiParam name="contentType" title="Content Type">
+              <type>
+                <choiceType>
+                  <constraints>
+                    <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                    <valueConstraint name="valuesSourceDependencies">com.provar.core.model.base.api.MimeContentType</valueConstraint>
+                  </constraints>
+                </choiceType>
+              </type>
+            </apiParam>
+            <apiParam name="data" title="Data">
+              <type>
+                <urlType/>
+              </type>
+            </apiParam>
+            <apiParam name="base64Encode" title="Encode As Base64">
+              <type>
+                <booleanType/>
+              </type>
+            </apiParam>
+          </childParams>
+        </compoundApiParam>
+      </generatedParameters>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="TCOutcome" passwordVariableAllowed="true" title="TCOutcome">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="PlanID" passwordVariableAllowed="true" title="PlanID">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="SuiteID" passwordVariableAllowed="true" title="SuiteID">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="PointID" passwordVariableAllowed="true" title="PointID">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="TCOutcome"/>
+    <argument id="PlanID"/>
+    <argument id="SuiteID"/>
+    <argument id="PointID"/>
+  </args>
+</testCase>

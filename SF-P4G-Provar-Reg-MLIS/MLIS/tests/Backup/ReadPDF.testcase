@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase guid="4250c690-f036-4cdb-8513-e2ec02a047fa" id="12">
+  <summary/>
+  <steps>
+    <apiCall apiId="customapis.ReadPDF" guid="432010b9-9442-4d0e-92c0-05ebdc5baac6" name="ReadPDF" testItemId="1" title="Read PDF: ⇒ pdfVal">
+      <arguments>
+        <argument id="fileName">
+          <value class="value" valueClass="string">Quote Document.pdf</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">pdfVal</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" guid="5e6c667f-35ed-432d-b83f-49d62c51f4f3" name="AssertValues" testItemId="2" title="Assert: {pdfVal} Contains Absence of easement - Access (Pedestrian)">
+      <arguments>
+        <argument id="expectedValue">
+          <value class="variable">
+            <path element="pdfVal"/>
+          </value>
+        </argument>
+        <argument id="comparisonType">
+          <value class="value" valueClass="string">Contains</value>
+        </argument>
+        <argument id="actualValue">
+          <value class="value" valueClass="string">Absence of easement - Access (Pedestrian)</value>
+        </argument>
+        <argument id="caseSensitive">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="numeric">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="retainDecimals">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="nullGreater">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchMultiLine">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchDotAll">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="failureMessage"/>
+      </arguments>
+    </apiCall>
+  </steps>
+</testCase>

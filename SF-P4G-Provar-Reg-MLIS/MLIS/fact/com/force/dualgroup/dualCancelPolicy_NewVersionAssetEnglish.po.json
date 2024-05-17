@@ -1,0 +1,60 @@
+{
+  "componentId" : "2f4d20ad-6e16-4f19-a42f-a2f744fb8ea3",
+  "name" : "/com/force/dualgroup/dualCancelPolicy_NewVersionAssetEnglish",
+  "tagName" : "c-dual-cancel-policy_-new-version-asset-english",
+  "parameters" : [ {
+    "name" : "layout",
+    "value" : "lightning",
+    "comparisonType" : "equals",
+    "default" : true
+  }, {
+    "name" : "dir",
+    "value" : "ltr",
+    "comparisonType" : "equals",
+    "default" : true
+  } ],
+  "type" : "Page",
+  "pageStructureElement" : false,
+  "fieldDetailsElement" : false,
+  "elements" : [ {
+    "componentId" : "75673e90-8598-4891-8fd7-895687b33474",
+    "type" : "component::ccc101c7-48a2-4573-b66c-3dc99ca59dd5",
+    "label" : "Vlocity_insOmniscriptStep",
+    "elementTagName" : "vlocity_ins-omniscript-step",
+    "properties" : [ ],
+    "parameters" : [ {
+      "index" : 4,
+      "default" : true
+    } ],
+    "elements" : [ {
+      "type" : "content",
+      "elements" : [ {
+        "componentId" : "47946460-40b5-4a6a-95a5-093204e9308b",
+        "type" : "component::ccc101c7-48a2-4573-b66c-3dc99ca59dd5",
+        "label" : "Vlocity_insOmniscriptSelect",
+        "elementTagName" : "vlocity_ins-omniscript-select",
+        "properties" : [ ],
+        "parameters" : [ {
+          "index" : 1,
+          "default" : true
+        }, {
+          "name" : "class",
+          "value" : "slds-p-right_small slds-m-bottom_xx-small slds-show_inline-block slds-size_12-of-12 slds-medium-size_12-of-12",
+          "comparisonType" : "equals",
+          "default" : true
+        } ],
+        "elements" : [ {
+          "type" : "content",
+          "elements" : [ {
+            "componentId" : "4368074f-92b6-44f5-92c8-a15ba0b7bdf4",
+            "type" : "component::3ccec879-cb6f-4cb9-834e-2e2da48a0d9c",
+            "label" : "CCombobox",
+            "properties" : [ ],
+            "parameters" : [ ],
+            "elements" : [ ]
+          } ]
+        } ]
+      } ]
+    } ]
+  } ]
+}
